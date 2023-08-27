@@ -41,8 +41,12 @@ def arrange(element, show_result=False):
     whitespace_with_operator = " " * \
         (len(first_line) - len(f"{expression}{second_elem}"))
     second_line = f"{expression}{whitespace_with_operator}{second_elem}"
-    third_line = f"{whitespace_without_operator}{result}"
-    arrangement = f"{first_line}\n{second_line}\n{'-' * width}\n{third_line}"
+    arrangement = f"{first_line}\n{second_line}\n{'-' * width}"
+    if show_result:
+        whitespace_for_result = " " * (width - len(str(result)))
+        third_line = f"{whitespace_for_result}{result}"
+        arrangement = arrangement + "\n" + third_line
+
     # print(arrangement)
     #   arrangement = f'{first_elem:>{width - len(first_elem) + 1}}\n{expression} {second_elem.rjust(width - len(second_elem))}\n{"-" * width}\n{str(result):>{width - len(first_elem) + 1}}'
     return arrangement
